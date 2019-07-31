@@ -33,7 +33,7 @@ public class FileSaveUtil {
 
   public static void saveCourse(String val) {
     try {
-      Files.write(courseFilePath, val.getBytes(), StandardOpenOption.APPEND);
+      Files.write(courseFilePath, (val + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       log.warn("保存失败");
     }
@@ -41,7 +41,7 @@ public class FileSaveUtil {
 
   public static void saveTopic(String val) {
     try {
-      Files.write(topicFilePath, val.getBytes(), StandardOpenOption.APPEND);
+      Files.write(topicFilePath, (val + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       log.warn("保存失败");
     }
@@ -49,7 +49,7 @@ public class FileSaveUtil {
 
   public static void saveArticle(String val) {
     try {
-      Files.write(articleFilePath, val.getBytes(), StandardOpenOption.APPEND);
+      Files.write(articleFilePath, (val + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
     } catch (IOException e) {
       log.warn("保存失败");
     }
