@@ -20,29 +20,29 @@ import java.util.Objects;
 @Slf4j
 public class FetchArticleAction extends AbstractFetchAction<ArticleRequest, ArticleResponse> {
 
-  @Override
-  public ArticleResponse fetch(ArticleRequest articleRequest) {
-    try {
-      MediaType mediaType = MediaType.get("text/plain");
-      final String string = JsonUtil.parseToString(articleRequest);
-      RequestBody body = RequestBody.create(Objects.requireNonNull(string).getBytes(), mediaType);
-      final Request build =
-          OkHttpUtil.buildCommonRequest()
-              .url("https://time.geekbang.org/serv/v1/article")
-              .post(body)
-              .build();
-      final Response execute = OkHttpUtil.getClient().newCall(build).execute();
-      if (execute.isSuccessful()) {
-        return JsonUtil.parseToClass(
-            Objects.requireNonNull(execute.body()).string(), ArticleResponse.class);
-      } else {
-        log.warn(
-            "请求失败 {}", JsonUtil.parseToString(Objects.requireNonNull(execute.body()).string()));
-      }
-    } catch (IOException e) {
-      log.error("与远程连接异常", e);
+    @Override
+    public ArticleResponse fetch(ArticleRequest articleRequest) {
+        try {
+            MediaType mediaType = MediaType.get("text/plain");
+            final String string = JsonUtil.parseToString(articleRequest);
+            RequestBody body = RequestBody.create(Objects.requireNonNull(string).getBytes(), mediaType);
+            final Request build =
+                    OkHttpUtil.buildCommonRequest()
+                            .url("https://time.geekbang.org/serv/v1/article")
+                            .post(body)
+                            .build();
+            final Response execute = OkHttpUtil.getClient().newCall(build).execute();
+            if (execute.isSuccessful()) {
+                return JsonUtil.parseToClass(
+                        Objects.requireNonNull(execute.body()).string(), ArticleResponse.class);
+            } else {
+                log.warn(
+                        "请求失败 {}", JsonUtil.parseToString(Objects.requireNonNull(execute.body()).string()));
+            }
+        } catch (IOException e) {
+            log.error("与远程连接异常", e);
+        }
+        log.warn("请求失败");
+        return null;
     }
-    log.warn("请求失败");
-    return null;
-  }
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ArticleRequest {
 
-  private String id;
+    private String id;
 
-  private boolean include_neighbors;
+    private boolean include_neighbors;
 }

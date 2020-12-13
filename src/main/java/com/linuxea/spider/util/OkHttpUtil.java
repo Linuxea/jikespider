@@ -13,21 +13,21 @@ import okhttp3.logging.HttpLoggingInterceptor;
 @Slf4j
 public class OkHttpUtil {
 
-  public static Request.Builder buildCommonRequest() {
-    return new Request.Builder()
-        .addHeader("Cookie", SpiderConstant.COOKIE)
-        .addHeader("Origin", SpiderConstant.REFER)
-        .addHeader("User-Agent", SpiderConstant.UA)
-        .addHeader("Accept", "*/*")
-        .addHeader("Cache-Control", "no-cache")
-        .addHeader("Host", "time.geekbang.org")
-        .addHeader("Accept-Encoding", "gzip, deflate")
-        .addHeader("Connection", "keep-alive");
-  }
+    public static Request.Builder buildCommonRequest() {
+        return new Request.Builder()
+                .addHeader("Cookie", SpiderConstant.COOKIE)
+                .addHeader("Origin", SpiderConstant.REFER)
+                .addHeader("User-Agent", SpiderConstant.UA)
+                .addHeader("Accept", "*/*")
+                .addHeader("Cache-Control", "no-cache")
+                .addHeader("Host", "time.geekbang.org")
+                .addHeader("Accept-Encoding", "gzip, deflate")
+                .addHeader("Connection", "keep-alive");
+    }
 
-  public static OkHttpClient getClient() {
-    HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-    logging.level(HttpLoggingInterceptor.Level.BODY);
-    return new OkHttpClient.Builder().addInterceptor(logging).build();
-  }
+    public static OkHttpClient getClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.level(HttpLoggingInterceptor.Level.BODY);
+        return new OkHttpClient.Builder().addInterceptor(logging).build();
+    }
 }

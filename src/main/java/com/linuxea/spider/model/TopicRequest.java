@@ -9,9 +9,13 @@ import lombok.Builder;
 @Builder
 public class TopicRequest {
 
-  private int cid;
-  @Builder.Default private int size = 100;
-  @Builder.Default private int prev = 0;
-  @Builder.Default private String order = "earliest";
-  @Builder.Default private boolean sample = false;
+    private int cid;
+    @Builder.Default
+    private int size = 100;
+    @Builder.Default
+    private int prev = 0;
+    @Builder.Default
+    private String order = "earliest";
+    @Builder.Default
+    private boolean sample = false;
 }

@@ -16,21 +16,21 @@ import java.util.Objects;
 @Slf4j
 public class FetchCourseAction extends AbstractFetchAction<Void, CourseResponse> {
 
-  @Override
-  public CourseResponse fetch(Void vod) {
-    try {
-      final Response execute =
-          OkHttpUtil.getClient()
-              .newCall(
-                  OkHttpUtil.buildCommonRequest()
-                      .url("https://time.geekbang.org/serv/v1/my/products/all")
-                      .build())
-              .execute();
-      return JsonUtil.parseToClass(
-          Objects.requireNonNull(execute.body()).string(), CourseResponse.class);
-    } catch (IOException e) {
-      log.error("获取远程数据异常", e);
+    @Override
+    public CourseResponse fetch(Void vod) {
+        try {
+            final Response execute =
+                    OkHttpUtil.getClient()
+                            .newCall(
+                                    OkHttpUtil.buildCommonRequest()
+                                            .url("https://time.geekbang.org/serv/v1/my/products/all")
+                                            .build())
+                            .execute();
+            return JsonUtil.parseToClass(
+                    Objects.requireNonNull(execute.body()).string(), CourseResponse.class);
+        } catch (IOException e) {
+            log.error("获取远程数据异常", e);
+        }
+        return null;
     }
-    return null;
-  }
 }
